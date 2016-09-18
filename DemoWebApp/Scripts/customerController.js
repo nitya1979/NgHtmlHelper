@@ -15,6 +15,20 @@
                               { countryCode: "UK", countryName: "United Kingdom" },
                             { countryCode: "INR", countryName: "India" },
                             { countryCode: "CA", countryName: "Canada" }];
+
+        $scope.dateOfBirthOptions = {
+            //dateDisabled: disabled,
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.dateOfBirthPopup = {
+            opened: false
+        };
+
+        $scope.dateOfBirthOpen = function () {
+            $scope.dateOfBirthPopup.opened = true;
+        };
     };
 
     app.controller("customerController", customerController);

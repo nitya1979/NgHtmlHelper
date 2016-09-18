@@ -10,6 +10,10 @@ namespace Capgemini.MVC.NgHtmlHelper
 {
     public static class NgTextAreaHelper
     {
+        public static MvcHtmlString NgTextAreaFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return htmlHelper.NgTextAreaFor(expression, null);
+        }
 
         public static MvcHtmlString NgTextAreaFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
         {
@@ -19,11 +23,14 @@ namespace Capgemini.MVC.NgHtmlHelper
 
             tagBuilder.MergeAttribute("name", member.Name.ToLower());
 
-            RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
-
-            foreach (string key in htmlAttr.Keys)
+            if (htmlAttributes != null)
             {
-                tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
+
+                foreach (string key in htmlAttr.Keys)
+                {
+                    tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                }
             }
 
             List<TagBuilder> validationSpans = new List<TagBuilder>();

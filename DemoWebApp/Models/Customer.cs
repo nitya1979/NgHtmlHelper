@@ -16,6 +16,10 @@ namespace DemoWebApp.Models
         [Required(ErrorMessage = "Last name is required.")]
         public string LastName { get; set; }
 
+        [Required(ErrorMessage = "Date of brith is required.")]
+        [Display(Description = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
+
         [Required(ErrorMessage ="Email is required.")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Please enter valid email")]
         public string Email { get; set; }

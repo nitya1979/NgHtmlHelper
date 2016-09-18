@@ -12,6 +12,11 @@ namespace Capgemini.MVC.NgHtmlHelper
 {
     public static class NgTextBoxHelper
     {
+        public static MvcHtmlString NgTextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            return htmlHelper.NgTextBoxFor(expression, null);
+        }
+
         public static MvcHtmlString NgTextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
         {
 
@@ -54,11 +59,14 @@ namespace Capgemini.MVC.NgHtmlHelper
                 tagBuilder.MergeAttribute("name", member.Name.ToLower());
             }
 
-            RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
-
-            foreach (string key in htmlAttr.Keys)
+            if (htmlAttributes != null)
             {
-                tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
+
+                foreach (string key in htmlAttr.Keys)
+                {
+                    tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                }
             }
 
             tagBuilder.MergeAttribute("ng-model", member.ReflectedType.Name.ToCamelCase() +"."+ member.Name);
