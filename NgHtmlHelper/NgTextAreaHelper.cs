@@ -4,13 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Capgemini.MVC.NgHtmlHelper
 {
     public static class NgTextAreaHelper
     {
 
-        public static MvcHtmlString NgTextAreaFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string cssClass)
+        public static MvcHtmlString NgTextAreaFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
         {
             MemberInfo member = ((MemberExpression)expression.Body).Member;
 
@@ -18,7 +19,12 @@ namespace Capgemini.MVC.NgHtmlHelper
 
             tagBuilder.MergeAttribute("name", member.Name.ToLower());
 
-            tagBuilder.AddCssClass(cssClass);
+            RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
+
+            foreach (string key in htmlAttr.Keys)
+            {
+                tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+            }
 
             List<TagBuilder> validationSpans = new List<TagBuilder>();
 

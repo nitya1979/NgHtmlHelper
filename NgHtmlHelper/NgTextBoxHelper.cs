@@ -6,12 +6,13 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.Routing;
 
 namespace Capgemini.MVC.NgHtmlHelper
 {
     public static class NgTextBoxHelper
     {
-        public static MvcHtmlString NgTextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string cssClass)
+        public static MvcHtmlString NgTextBoxFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, object htmlAttributes)
         {
 
             MemberInfo member = ((MemberExpression)expression.Body).Member;
@@ -53,7 +54,13 @@ namespace Capgemini.MVC.NgHtmlHelper
                 tagBuilder.MergeAttribute("name", member.Name.ToLower());
             }
 
-            tagBuilder.AddCssClass(cssClass);
+            RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
+
+            foreach (string key in htmlAttr.Keys)
+            {
+                tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+            }
+
             tagBuilder.MergeAttribute("ng-model", member.ReflectedType.Name.ToCamelCase() +"."+ member.Name);
 
             string finalHtml = tagBuilder.ToString(TagRenderMode.SelfClosing);

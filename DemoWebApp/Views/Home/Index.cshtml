@@ -1,0 +1,69 @@
+﻿@using Capgemini.MVC.NgHtmlHelper
+@model DemoWebApp.Models.Customer
+<div class="panel-body" ng-controller="customerController">
+    @using (Html.NgBeginForm("form-horizontal"))
+    {
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-10">
+                @Html.NgTextBoxFor(p => p.FirstName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-10">
+                @Html.NgTextBoxFor(p => p.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Description">Email</label>
+            <div class="col-sm-10">
+                @Html.NgTextBoxFor(p => p.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Address 1">Address 1</label>
+            <div class="col-sm-10">
+                @Html.NgTextAreaFor( p => p.Address1, new { @class= "form-control", @row="3" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="City">City</label>
+            <div class="col-sm-10">
+                @Html.NgTextBoxFor(p => p.City, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Country">Country</label>
+            <div class="col-sm-10">
+                @Html.NgComboBoxFor(p => p.Country, "countryList", "countryCode", "countryName", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Gender">Gender</label>
+            <div class="col-sm-10">
+                @Html.NgRadioButtonListFor(p => p.Gender, "genderList", "code", "name", new { @class = "radio-inline" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Preference">Preferences</label>
+            <div class="col-sm-10">
+                
+                @Html.NgListBoxFor(p => p.Prefereces, "preferenecList", "prefId", "prefName", new { @class = "form-control", @size="2" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="Gender">Checks</label>
+            <div class="col-sm-10">
+                @Html.NgCheckBoxFor(p =>p.check1)
+                @Html.NgCheckBoxFor(p => p.check2, "Yes", "No")
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" ng-disabled="myForm.Email.$invalid" class="btn btn-info">Submit</button>
+            </div>
+        </div>
+    }
+</div>

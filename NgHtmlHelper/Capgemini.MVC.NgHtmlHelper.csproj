@@ -7,8 +7,8 @@
     <ProjectGuid>{C6637BAC-0E71-46CF-AFBA-8DCC2F6DF95F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NgHtmlHelper</RootNamespace>
-    <AssemblyName>NgHtmlHelper</AssemblyName>
+    <RootNamespace>Capgemini.MVC.NgHtmlHelper</RootNamespace>
+    <AssemblyName>Capgemini.MVC.NgHtmlHelper</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -71,9 +71,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelperConstants.cs" />
+    <Compile Include="NgCheckBoxHelper.cs" />
     <Compile Include="NgDateBoxHelper.cs" />
     <Compile Include="NgFormHelper.cs" />
     <Compile Include="NgHtmlHelper.cs" />
+    <Compile Include="NgListBoxHelper.cs" />
+    <Compile Include="NgRadioButtonHelper.cs" />
+    <Compile Include="NgSelectHelper.cs" />
     <Compile Include="NgTextAreaHelper.cs" />
     <Compile Include="NgTextBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
