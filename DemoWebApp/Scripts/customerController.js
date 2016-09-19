@@ -29,6 +29,8 @@
         $scope.dateOfBirthOpen = function () {
             $scope.dateOfBirthPopup.opened = true;
         };
+        
+        $scope.isDisabled = true;
     };
 
     app.controller("customerController", customerController);

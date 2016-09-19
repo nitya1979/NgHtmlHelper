@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace Capgemini.MVC.NgHtmlHelper
 {
@@ -34,6 +35,23 @@ namespace Capgemini.MVC.NgHtmlHelper
                 errorMsg = "Please enter " + member.Name.ToLower();
 
             return GetSpan(errorMsg, member.Name.ToLower(), "required");
+        }
+
+        public static void SetHtmlAttributes(TagBuilder tagBuilder,  object htmlAttributes)
+        {
+            if (htmlAttributes != null)
+            {
+                RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
+
+                foreach (string key in htmlAttr.Keys)
+                {
+                    if (key.StartsWith("ng"))
+                        tagBuilder.MergeAttribute("ng-" + key.Substring(2), htmlAttr[key].ToString());
+                    else
+                        tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                }
+            }
+
         }
     }
 }

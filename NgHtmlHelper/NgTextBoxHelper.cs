@@ -59,15 +59,7 @@ namespace Capgemini.MVC.NgHtmlHelper
                 tagBuilder.MergeAttribute("name", member.Name.ToLower());
             }
 
-            if (htmlAttributes != null)
-            {
-                RouteValueDictionary htmlAttr = new RouteValueDictionary(htmlAttributes);
-
-                foreach (string key in htmlAttr.Keys)
-                {
-                    tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
-                }
-            }
+            NgHtmlHelper.SetHtmlAttributes(tagBuilder, htmlAttributes);
 
             tagBuilder.MergeAttribute("ng-model", member.ReflectedType.Name.ToCamelCase() +"."+ member.Name);
 

@@ -45,7 +45,10 @@ namespace Capgemini.MVC.NgHtmlHelper
 
                 foreach (string key in htmlAttr.Keys)
                 {
-                    tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
+                    if (key.StartsWith("ng"))
+                        tagBuilder.MergeAttribute("ng-" + key.Substring(2), htmlAttr[key].ToString());
+                    else
+                        tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
                 }
             }
             string displayText = member.Name;

@@ -34,12 +34,7 @@ namespace Capgemini.MVC.NgHtmlHelper
                 }
             }
 
-            System.Web.Routing.RouteValueDictionary htmlAttr = new System.Web.Routing.RouteValueDictionary(htmlAttributes);
-            foreach (string key in htmlAttr.Keys)
-            {
-                tagBuilder.MergeAttribute(key, htmlAttr[key].ToString());
-
-            }
+            NgHtmlHelper.SetHtmlAttributes(tagBuilder, htmlAttributes);
 
             tagBuilder.MergeAttribute("ng-model", member.ReflectedType.Name.ToCamelCase() + "." + member.Name);
 
